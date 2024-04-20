@@ -1,23 +1,21 @@
-import Head from 'next/head'
-import Header from '@components/Header'
-import Footer from '@components/Footer'
+document.addEventListener("DOMContentLoaded", function() {
+    // Obtener el elemento <div> donde se mostrará la imagen de fondo
+    var backgroundContainer = document.getElementById("background-container");
 
-export default function Home() {
-  return (
-    <div className="container">
-      <Head>
-        <title>Next.js Starter!</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+    // Crear un elemento <img> para cargar la imagen
+    var image = new Image();
+    image.src = "image.png"; // Ruta de la imagen
 
-      <main>
-        <Header title="Welcome to my app!" />
-        <p className="description">
-          Get started by editing <code>pages/index.js</code>
-        </p>
-      </main>
+    // Cuando la imagen se cargue correctamente
+    image.onload = function() {
+        // Establecer la imagen como fondo del contenedor
+        backgroundContainer.style.backgroundImage = "url('" + image.src + "')";
+        backgroundContainer.style.backgroundSize = "cover";
+        backgroundContainer.style.backgroundPosition = "center";
+    };
 
-      <Footer />
-    </div>
-  )
-}
+    // En caso de que haya un error al cargar la imagen
+    image.onerror = function() {
+        console.error("Error al cargar la imagen");
+    };
+});
